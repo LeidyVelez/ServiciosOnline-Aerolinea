@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAsientoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAsientoLabel_asientoPK_letra}" for="asientoPK_letra" />
+                    <h:inputText id="asientoPK_letra" value="#{asientoController.selected.asientoPK.letra}" title="#{bundle.CreateAsientoTitle_asientoPK_letra}" required="true" requiredMessage="#{bundle.CreateAsientoRequiredMessage_asientoPK_letra}"/>
+                    <h:outputLabel value="#{bundle.CreateAsientoLabel_asientoPK_idAvion}" for="asientoPK_idAvion" />
+                    <h:inputText id="asientoPK_idAvion" value="#{asientoController.selected.asientoPK.idAvion}" title="#{bundle.CreateAsientoTitle_asientoPK_idAvion}" required="true" requiredMessage="#{bundle.CreateAsientoRequiredMessage_asientoPK_idAvion}"/>
+                    <h:outputLabel value="#{bundle.CreateAsientoLabel_asientoPK_numero}" for="asientoPK_numero" />
+                    <h:inputText id="asientoPK_numero" value="#{asientoController.selected.asientoPK.numero}" title="#{bundle.CreateAsientoTitle_asientoPK_numero}" required="true" requiredMessage="#{bundle.CreateAsientoRequiredMessage_asientoPK_numero}"/>
+                    <h:outputLabel value="#{bundle.CreateAsientoLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{asientoController.selected.estado}" title="#{bundle.CreateAsientoTitle_estado}" required="true" requiredMessage="#{bundle.CreateAsientoRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.CreateAsientoLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{asientoController.selected.tipo}" title="#{bundle.CreateAsientoTitle_tipo}" required="true" requiredMessage="#{bundle.CreateAsientoRequiredMessage_tipo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{asientoController.create}" value="#{bundle.CreateAsientoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{asientoController.prepareList}" value="#{bundle.CreateAsientoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAsientoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

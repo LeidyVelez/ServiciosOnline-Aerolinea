@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateAeropuertoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_idAeropuerto}" for="idAeropuerto" />
+                    <h:inputText id="idAeropuerto" value="#{aeropuertoController.selected.idAeropuerto}" title="#{bundle.CreateAeropuertoTitle_idAeropuerto}" required="true" requiredMessage="#{bundle.CreateAeropuertoRequiredMessage_idAeropuerto}"/>
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_nombre}" for="nombre" />
+                    <h:inputText id="nombre" value="#{aeropuertoController.selected.nombre}" title="#{bundle.CreateAeropuertoTitle_nombre}" required="true" requiredMessage="#{bundle.CreateAeropuertoRequiredMessage_nombre}"/>
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{aeropuertoController.selected.tipo}" title="#{bundle.CreateAeropuertoTitle_tipo}" required="true" requiredMessage="#{bundle.CreateAeropuertoRequiredMessage_tipo}"/>
+                    <h:outputLabel value="#{bundle.CreateAeropuertoLabel_ciudad}" for="ciudad" />
+                    <h:selectOneMenu id="ciudad" value="#{aeropuertoController.selected.ciudad}" title="#{bundle.CreateAeropuertoTitle_ciudad}" required="true" requiredMessage="#{bundle.CreateAeropuertoRequiredMessage_ciudad}">
+                        <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{aeropuertoController.create}" value="#{bundle.CreateAeropuertoSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{aeropuertoController.prepareList}" value="#{bundle.CreateAeropuertoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateAeropuertoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

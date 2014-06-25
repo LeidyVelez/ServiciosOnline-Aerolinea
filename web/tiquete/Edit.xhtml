@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTiqueteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTiqueteLabel_idTiquete}" for="idTiquete" />
+                    <h:inputText id="idTiquete" value="#{tiqueteController.selected.idTiquete}" title="#{bundle.EditTiqueteTitle_idTiquete}" required="true" requiredMessage="#{bundle.EditTiqueteRequiredMessage_idTiquete}"/>
+                    <h:outputLabel value="#{bundle.EditTiqueteLabel_usuarioID}" for="usuarioID" />
+                    <h:inputText id="usuarioID" value="#{tiqueteController.selected.usuarioID}" title="#{bundle.EditTiqueteTitle_usuarioID}" required="true" requiredMessage="#{bundle.EditTiqueteRequiredMessage_usuarioID}"/>
+                    <h:outputLabel value="#{bundle.EditTiqueteLabel_tipoIDUsuario}" for="tipoIDUsuario" />
+                    <h:inputText id="tipoIDUsuario" value="#{tiqueteController.selected.tipoIDUsuario}" title="#{bundle.EditTiqueteTitle_tipoIDUsuario}" required="true" requiredMessage="#{bundle.EditTiqueteRequiredMessage_tipoIDUsuario}"/>
+                    <h:outputLabel value="#{bundle.EditTiqueteLabel_itinerario}" for="itinerario" />
+                    <h:inputText id="itinerario" value="#{tiqueteController.selected.itinerario}" title="#{bundle.EditTiqueteTitle_itinerario}" required="true" requiredMessage="#{bundle.EditTiqueteRequiredMessage_itinerario}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tiqueteController.update}" value="#{bundle.EditTiqueteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTiqueteViewLink}"/>
+                <br />
+                <h:commandLink action="#{tiqueteController.prepareList}" value="#{bundle.EditTiqueteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTiqueteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

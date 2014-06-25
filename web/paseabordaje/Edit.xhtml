@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPaseabordajeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPaseabordajeLabel_idPaseAbordaje}" for="idPaseAbordaje" />
+                    <h:inputText id="idPaseAbordaje" value="#{paseabordajeController.selected.idPaseAbordaje}" title="#{bundle.EditPaseabordajeTitle_idPaseAbordaje}" required="true" requiredMessage="#{bundle.EditPaseabordajeRequiredMessage_idPaseAbordaje}"/>
+                    <h:outputLabel value="#{bundle.EditPaseabordajeLabel_fechaEntrega}" for="fechaEntrega" />
+                    <h:inputText id="fechaEntrega" value="#{paseabordajeController.selected.fechaEntrega}" title="#{bundle.EditPaseabordajeTitle_fechaEntrega}" required="true" requiredMessage="#{bundle.EditPaseabordajeRequiredMessage_fechaEntrega}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditPaseabordajeLabel_puertaAbordaje}" for="puertaAbordaje" />
+                    <h:selectOneMenu id="puertaAbordaje" value="#{paseabordajeController.selected.puertaAbordaje}" title="#{bundle.EditPaseabordajeTitle_puertaAbordaje}" required="true" requiredMessage="#{bundle.EditPaseabordajeRequiredMessage_puertaAbordaje}">
+                        <f:selectItems value="#{puertaabordajeController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPaseabordajeLabel_usuario}" for="usuario" />
+                    <h:selectOneMenu id="usuario" value="#{paseabordajeController.selected.usuario}" title="#{bundle.EditPaseabordajeTitle_usuario}" required="true" requiredMessage="#{bundle.EditPaseabordajeRequiredMessage_usuario}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{paseabordajeController.update}" value="#{bundle.EditPaseabordajeSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPaseabordajeViewLink}"/>
+                <br />
+                <h:commandLink action="#{paseabordajeController.prepareList}" value="#{bundle.EditPaseabordajeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPaseabordajeIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

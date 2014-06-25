@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCanjeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCanjeLabel_idCanje}" for="idCanje" />
+                    <h:inputText id="idCanje" value="#{canjeController.selected.idCanje}" title="#{bundle.CreateCanjeTitle_idCanje}" required="true" requiredMessage="#{bundle.CreateCanjeRequiredMessage_idCanje}"/>
+                    <h:outputLabel value="#{bundle.CreateCanjeLabel_idMiembro}" for="idMiembro" />
+                    <h:inputText id="idMiembro" value="#{canjeController.selected.idMiembro}" title="#{bundle.CreateCanjeTitle_idMiembro}" required="true" requiredMessage="#{bundle.CreateCanjeRequiredMessage_idMiembro}"/>
+                    <h:outputLabel value="#{bundle.CreateCanjeLabel_tipoIDMiembro}" for="tipoIDMiembro" />
+                    <h:inputText id="tipoIDMiembro" value="#{canjeController.selected.tipoIDMiembro}" title="#{bundle.CreateCanjeTitle_tipoIDMiembro}" required="true" requiredMessage="#{bundle.CreateCanjeRequiredMessage_tipoIDMiembro}"/>
+                    <h:outputLabel value="#{bundle.CreateCanjeLabel_tiquete}" for="tiquete" />
+                    <h:inputText id="tiquete" value="#{canjeController.selected.tiquete}" title="#{bundle.CreateCanjeTitle_tiquete}" required="true" requiredMessage="#{bundle.CreateCanjeRequiredMessage_tiquete}"/>
+                    <h:outputLabel value="#{bundle.CreateCanjeLabel_millasDeCanje}" for="millasDeCanje" />
+                    <h:inputText id="millasDeCanje" value="#{canjeController.selected.millasDeCanje}" title="#{bundle.CreateCanjeTitle_millasDeCanje}" required="true" requiredMessage="#{bundle.CreateCanjeRequiredMessage_millasDeCanje}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{canjeController.create}" value="#{bundle.CreateCanjeSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{canjeController.prepareList}" value="#{bundle.CreateCanjeShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCanjeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

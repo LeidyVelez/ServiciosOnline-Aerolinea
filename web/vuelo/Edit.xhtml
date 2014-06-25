@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditVueloTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditVueloLabel_idVuelo}" for="idVuelo" />
+                    <h:inputText id="idVuelo" value="#{vueloController.selected.idVuelo}" title="#{bundle.EditVueloTitle_idVuelo}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_idVuelo}"/>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_estado}" for="estado" />
+                    <h:inputText id="estado" value="#{vueloController.selected.estado}" title="#{bundle.EditVueloTitle_estado}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_estado}"/>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_fechaSalida}" for="fechaSalida" />
+                    <h:inputText id="fechaSalida" value="#{vueloController.selected.fechaSalida}" title="#{bundle.EditVueloTitle_fechaSalida}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_fechaSalida}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_fechaLlegada}" for="fechaLlegada" />
+                    <h:inputText id="fechaLlegada" value="#{vueloController.selected.fechaLlegada}" title="#{bundle.EditVueloTitle_fechaLlegada}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_fechaLlegada}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_ciudadOrigen}" for="ciudadOrigen" />
+                    <h:selectOneMenu id="ciudadOrigen" value="#{vueloController.selected.ciudadOrigen}" title="#{bundle.EditVueloTitle_ciudadOrigen}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_ciudadOrigen}">
+                        <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_cuidadDestino}" for="cuidadDestino" />
+                    <h:selectOneMenu id="cuidadDestino" value="#{vueloController.selected.cuidadDestino}" title="#{bundle.EditVueloTitle_cuidadDestino}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_cuidadDestino}">
+                        <f:selectItems value="#{ciudadController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditVueloLabel_avion}" for="avion" />
+                    <h:selectOneMenu id="avion" value="#{vueloController.selected.avion}" title="#{bundle.EditVueloTitle_avion}" required="true" requiredMessage="#{bundle.EditVueloRequiredMessage_avion}">
+                        <f:selectItems value="#{avionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{vueloController.update}" value="#{bundle.EditVueloSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditVueloViewLink}"/>
+                <br />
+                <h:commandLink action="#{vueloController.prepareList}" value="#{bundle.EditVueloShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditVueloIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

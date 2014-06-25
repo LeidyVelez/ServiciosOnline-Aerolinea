@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewTiqueteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewTiqueteLabel_idTiquete}"/>
+                    <h:outputText value="#{tiqueteController.selected.idTiquete}" title="#{bundle.ViewTiqueteTitle_idTiquete}"/>
+                    <h:outputText value="#{bundle.ViewTiqueteLabel_usuarioID}"/>
+                    <h:outputText value="#{tiqueteController.selected.usuarioID}" title="#{bundle.ViewTiqueteTitle_usuarioID}"/>
+                    <h:outputText value="#{bundle.ViewTiqueteLabel_tipoIDUsuario}"/>
+                    <h:outputText value="#{tiqueteController.selected.tipoIDUsuario}" title="#{bundle.ViewTiqueteTitle_tipoIDUsuario}"/>
+                    <h:outputText value="#{bundle.ViewTiqueteLabel_itinerario}"/>
+                    <h:outputText value="#{tiqueteController.selected.itinerario}" title="#{bundle.ViewTiqueteTitle_itinerario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{tiqueteController.destroyAndView}" value="#{bundle.ViewTiqueteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewTiqueteEditLink}"/>
+                <br />
+                <h:commandLink action="#{tiqueteController.prepareCreate}" value="#{bundle.ViewTiqueteCreateLink}" />
+                <br />
+                <h:commandLink action="#{tiqueteController.prepareList}" value="#{bundle.ViewTiqueteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewTiqueteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

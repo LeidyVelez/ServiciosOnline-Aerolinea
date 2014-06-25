@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditTarjetacreditoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditTarjetacreditoLabel_number}" for="number" />
+                    <h:inputText id="number" value="#{tarjetacreditoController.selected.number}" title="#{bundle.EditTarjetacreditoTitle_number}" required="true" requiredMessage="#{bundle.EditTarjetacreditoRequiredMessage_number}"/>
+                    <h:outputLabel value="#{bundle.EditTarjetacreditoLabel_franquisia}" for="franquisia" />
+                    <h:inputText id="franquisia" value="#{tarjetacreditoController.selected.franquisia}" title="#{bundle.EditTarjetacreditoTitle_franquisia}" required="true" requiredMessage="#{bundle.EditTarjetacreditoRequiredMessage_franquisia}"/>
+                    <h:outputLabel value="#{bundle.EditTarjetacreditoLabel_codigoSeguridad}" for="codigoSeguridad" />
+                    <h:inputText id="codigoSeguridad" value="#{tarjetacreditoController.selected.codigoSeguridad}" title="#{bundle.EditTarjetacreditoTitle_codigoSeguridad}" required="true" requiredMessage="#{bundle.EditTarjetacreditoRequiredMessage_codigoSeguridad}"/>
+                    <h:outputLabel value="#{bundle.EditTarjetacreditoLabel_nombreTitular}" for="nombreTitular" />
+                    <h:inputText id="nombreTitular" value="#{tarjetacreditoController.selected.nombreTitular}" title="#{bundle.EditTarjetacreditoTitle_nombreTitular}" required="true" requiredMessage="#{bundle.EditTarjetacreditoRequiredMessage_nombreTitular}"/>
+                    <h:outputLabel value="#{bundle.EditTarjetacreditoLabel_usuarioID}" for="usuarioID" />
+                    <h:inputText id="usuarioID" value="#{tarjetacreditoController.selected.usuarioID}" title="#{bundle.EditTarjetacreditoTitle_usuarioID}" required="true" requiredMessage="#{bundle.EditTarjetacreditoRequiredMessage_usuarioID}"/>
+                    <h:outputLabel value="#{bundle.EditTarjetacreditoLabel_tipoIDUsuario}" for="tipoIDUsuario" />
+                    <h:inputText id="tipoIDUsuario" value="#{tarjetacreditoController.selected.tipoIDUsuario}" title="#{bundle.EditTarjetacreditoTitle_tipoIDUsuario}" required="true" requiredMessage="#{bundle.EditTarjetacreditoRequiredMessage_tipoIDUsuario}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{tarjetacreditoController.update}" value="#{bundle.EditTarjetacreditoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditTarjetacreditoViewLink}"/>
+                <br />
+                <h:commandLink action="#{tarjetacreditoController.prepareList}" value="#{bundle.EditTarjetacreditoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditTarjetacreditoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

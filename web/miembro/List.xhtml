@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMiembroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListMiembroEmpty}" rendered="#{miembroController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{miembroController.items.rowCount > 0}">
+                    <h:outputText value="#{miembroController.pagination.pageFirstItem + 1}..#{miembroController.pagination.pageLastItem + 1}/#{miembroController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{miembroController.previous}" value="#{bundle.Previous} #{miembroController.pagination.pageSize}" rendered="#{miembroController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{miembroController.next}" value="#{bundle.Next} #{miembroController.pagination.pageSize}" rendered="#{miembroController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{miembroController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiembroTitle_tipoMiembro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoMiembro}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiembroTitle_usuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiembroTitle_contrasena}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.contrasena}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiembroTitle_millas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.millas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMiembroTitle_usuario1}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuario1}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{miembroController.prepareView}" value="#{bundle.ListMiembroViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{miembroController.prepareEdit}" value="#{bundle.ListMiembroEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{miembroController.destroy}" value="#{bundle.ListMiembroDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{miembroController.prepareCreate}" value="#{bundle.ListMiembroCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListMiembroIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

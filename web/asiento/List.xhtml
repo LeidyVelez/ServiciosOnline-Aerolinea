@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAsientoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAsientoEmpty}" rendered="#{asientoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{asientoController.items.rowCount > 0}">
+                    <h:outputText value="#{asientoController.pagination.pageFirstItem + 1}..#{asientoController.pagination.pageLastItem + 1}/#{asientoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{asientoController.previous}" value="#{bundle.Previous} #{asientoController.pagination.pageSize}" rendered="#{asientoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{asientoController.next}" value="#{bundle.Next} #{asientoController.pagination.pageSize}" rendered="#{asientoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{asientoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAsientoTitle_asientoPK_idAvion}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.asientoPK.idAvion}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAsientoTitle_asientoPK_letra}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.asientoPK.letra}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAsientoTitle_asientoPK_numero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.asientoPK.numero}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAsientoTitle_estado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.estado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAsientoTitle_tipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{asientoController.prepareView}" value="#{bundle.ListAsientoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{asientoController.prepareEdit}" value="#{bundle.ListAsientoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{asientoController.destroy}" value="#{bundle.ListAsientoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{asientoController.prepareCreate}" value="#{bundle.ListAsientoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAsientoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

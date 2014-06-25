@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMiembroTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMiembroLabel_tipoMiembro}" for="tipoMiembro" />
+                    <h:inputText id="tipoMiembro" value="#{miembroController.selected.tipoMiembro}" title="#{bundle.EditMiembroTitle_tipoMiembro}" required="true" requiredMessage="#{bundle.EditMiembroRequiredMessage_tipoMiembro}"/>
+                    <h:outputLabel value="#{bundle.EditMiembroLabel_usuario}" for="usuario" />
+                    <h:inputText id="usuario" value="#{miembroController.selected.usuario}" title="#{bundle.EditMiembroTitle_usuario}" required="true" requiredMessage="#{bundle.EditMiembroRequiredMessage_usuario}"/>
+                    <h:outputLabel value="#{bundle.EditMiembroLabel_contrasena}" for="contrasena" />
+                    <h:inputText id="contrasena" value="#{miembroController.selected.contrasena}" title="#{bundle.EditMiembroTitle_contrasena}" required="true" requiredMessage="#{bundle.EditMiembroRequiredMessage_contrasena}"/>
+                    <h:outputLabel value="#{bundle.EditMiembroLabel_millas}" for="millas" />
+                    <h:inputText id="millas" value="#{miembroController.selected.millas}" title="#{bundle.EditMiembroTitle_millas}" />
+                    <h:outputLabel value="#{bundle.EditMiembroLabel_usuario1}" for="usuario1" />
+                    <h:selectOneMenu id="usuario1" value="#{miembroController.selected.usuario1}" title="#{bundle.EditMiembroTitle_usuario1}" required="true" requiredMessage="#{bundle.EditMiembroRequiredMessage_usuario1}">
+                        <f:selectItems value="#{usuarioController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{miembroController.update}" value="#{bundle.EditMiembroSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMiembroViewLink}"/>
+                <br />
+                <h:commandLink action="#{miembroController.prepareList}" value="#{bundle.EditMiembroShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMiembroIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

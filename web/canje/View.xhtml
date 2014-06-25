@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCanjeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCanjeLabel_idCanje}"/>
+                    <h:outputText value="#{canjeController.selected.idCanje}" title="#{bundle.ViewCanjeTitle_idCanje}"/>
+                    <h:outputText value="#{bundle.ViewCanjeLabel_idMiembro}"/>
+                    <h:outputText value="#{canjeController.selected.idMiembro}" title="#{bundle.ViewCanjeTitle_idMiembro}"/>
+                    <h:outputText value="#{bundle.ViewCanjeLabel_tipoIDMiembro}"/>
+                    <h:outputText value="#{canjeController.selected.tipoIDMiembro}" title="#{bundle.ViewCanjeTitle_tipoIDMiembro}"/>
+                    <h:outputText value="#{bundle.ViewCanjeLabel_tiquete}"/>
+                    <h:outputText value="#{canjeController.selected.tiquete}" title="#{bundle.ViewCanjeTitle_tiquete}"/>
+                    <h:outputText value="#{bundle.ViewCanjeLabel_millasDeCanje}"/>
+                    <h:outputText value="#{canjeController.selected.millasDeCanje}" title="#{bundle.ViewCanjeTitle_millasDeCanje}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{canjeController.destroyAndView}" value="#{bundle.ViewCanjeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCanjeEditLink}"/>
+                <br />
+                <h:commandLink action="#{canjeController.prepareCreate}" value="#{bundle.ViewCanjeCreateLink}" />
+                <br />
+                <h:commandLink action="#{canjeController.prepareList}" value="#{bundle.ViewCanjeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCanjeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

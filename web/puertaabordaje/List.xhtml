@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPuertaabordajeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPuertaabordajeEmpty}" rendered="#{puertaabordajeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{puertaabordajeController.items.rowCount > 0}">
+                    <h:outputText value="#{puertaabordajeController.pagination.pageFirstItem + 1}..#{puertaabordajeController.pagination.pageLastItem + 1}/#{puertaabordajeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{puertaabordajeController.previous}" value="#{bundle.Previous} #{puertaabordajeController.pagination.pageSize}" rendered="#{puertaabordajeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{puertaabordajeController.next}" value="#{bundle.Next} #{puertaabordajeController.pagination.pageSize}" rendered="#{puertaabordajeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{puertaabordajeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPuertaabordajeTitle_idPuertaAbordaje}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPuertaAbordaje}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPuertaabordajeTitle_numeroPuerta}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.numeroPuerta}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPuertaabordajeTitle_aeropuerto}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.aeropuerto}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{puertaabordajeController.prepareView}" value="#{bundle.ListPuertaabordajeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{puertaabordajeController.prepareEdit}" value="#{bundle.ListPuertaabordajeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{puertaabordajeController.destroy}" value="#{bundle.ListPuertaabordajeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{puertaabordajeController.prepareCreate}" value="#{bundle.ListPuertaabordajeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPuertaabordajeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListTiqueteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListTiqueteEmpty}" rendered="#{tiqueteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{tiqueteController.items.rowCount > 0}">
+                    <h:outputText value="#{tiqueteController.pagination.pageFirstItem + 1}..#{tiqueteController.pagination.pageLastItem + 1}/#{tiqueteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{tiqueteController.previous}" value="#{bundle.Previous} #{tiqueteController.pagination.pageSize}" rendered="#{tiqueteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{tiqueteController.next}" value="#{bundle.Next} #{tiqueteController.pagination.pageSize}" rendered="#{tiqueteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{tiqueteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiqueteTitle_idTiquete}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idTiquete}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiqueteTitle_usuarioID}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.usuarioID}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiqueteTitle_tipoIDUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipoIDUsuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListTiqueteTitle_itinerario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.itinerario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{tiqueteController.prepareView}" value="#{bundle.ListTiqueteViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tiqueteController.prepareEdit}" value="#{bundle.ListTiqueteEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{tiqueteController.destroy}" value="#{bundle.ListTiqueteDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{tiqueteController.prepareCreate}" value="#{bundle.ListTiqueteCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListTiqueteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

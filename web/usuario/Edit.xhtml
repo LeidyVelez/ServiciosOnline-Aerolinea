@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditUsuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioPK_tipoId}" for="usuarioPK_tipoId" />
+                    <h:inputText id="usuarioPK_tipoId" value="#{usuarioController.selected.usuarioPK.tipoId}" title="#{bundle.EditUsuarioTitle_usuarioPK_tipoId}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_usuarioPK_tipoId}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_usuarioPK_idUsuario}" for="usuarioPK_idUsuario" />
+                    <h:inputText id="usuarioPK_idUsuario" value="#{usuarioController.selected.usuarioPK.idUsuario}" title="#{bundle.EditUsuarioTitle_usuarioPK_idUsuario}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_usuarioPK_idUsuario}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_nombres}" for="nombres" />
+                    <h:inputText id="nombres" value="#{usuarioController.selected.nombres}" title="#{bundle.EditUsuarioTitle_nombres}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_nombres}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_apellidos}" for="apellidos" />
+                    <h:inputText id="apellidos" value="#{usuarioController.selected.apellidos}" title="#{bundle.EditUsuarioTitle_apellidos}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_direccion}" for="direccion" />
+                    <h:inputText id="direccion" value="#{usuarioController.selected.direccion}" title="#{bundle.EditUsuarioTitle_direccion}" required="true" requiredMessage="#{bundle.EditUsuarioRequiredMessage_direccion}"/>
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_correoElectronico}" for="correoElectronico" />
+                    <h:inputText id="correoElectronico" value="#{usuarioController.selected.correoElectronico}" title="#{bundle.EditUsuarioTitle_correoElectronico}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_telefono}" for="telefono" />
+                    <h:inputText id="telefono" value="#{usuarioController.selected.telefono}" title="#{bundle.EditUsuarioTitle_telefono}" />
+                    <h:outputLabel value="#{bundle.EditUsuarioLabel_miembro}" for="miembro" />
+                    <h:selectOneMenu id="miembro" value="#{usuarioController.selected.miembro}" title="#{bundle.EditUsuarioTitle_miembro}" >
+                        <f:selectItems value="#{miembroController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{usuarioController.update}" value="#{bundle.EditUsuarioSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditUsuarioViewLink}"/>
+                <br />
+                <h:commandLink action="#{usuarioController.prepareList}" value="#{bundle.EditUsuarioShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditUsuarioIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

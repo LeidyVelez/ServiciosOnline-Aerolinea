@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/templaten.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPaseabordajeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPaseabordajeLabel_idPaseAbordaje}"/>
+                    <h:outputText value="#{paseabordajeController.selected.idPaseAbordaje}" title="#{bundle.ViewPaseabordajeTitle_idPaseAbordaje}"/>
+                    <h:outputText value="#{bundle.ViewPaseabordajeLabel_fechaEntrega}"/>
+                    <h:outputText value="#{paseabordajeController.selected.fechaEntrega}" title="#{bundle.ViewPaseabordajeTitle_fechaEntrega}">
+                        <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewPaseabordajeLabel_puertaAbordaje}"/>
+                    <h:outputText value="#{paseabordajeController.selected.puertaAbordaje}" title="#{bundle.ViewPaseabordajeTitle_puertaAbordaje}"/>
+                    <h:outputText value="#{bundle.ViewPaseabordajeLabel_usuario}"/>
+                    <h:outputText value="#{paseabordajeController.selected.usuario}" title="#{bundle.ViewPaseabordajeTitle_usuario}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{paseabordajeController.destroyAndView}" value="#{bundle.ViewPaseabordajeDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPaseabordajeEditLink}"/>
+                <br />
+                <h:commandLink action="#{paseabordajeController.prepareCreate}" value="#{bundle.ViewPaseabordajeCreateLink}" />
+                <br />
+                <h:commandLink action="#{paseabordajeController.prepareList}" value="#{bundle.ViewPaseabordajeShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPaseabordajeIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
